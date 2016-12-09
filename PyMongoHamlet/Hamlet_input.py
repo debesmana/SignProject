@@ -10,4 +10,7 @@ book = {}
 book["title"] = "Hamlet"
 book["text"] = hamletFile
 
-collection.update(book,upsert=True)
+try:
+    collection.insert(book)
+except:
+    print("Document already exists")
