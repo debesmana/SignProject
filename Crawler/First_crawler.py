@@ -1,21 +1,20 @@
-import scrappy #scrappy is a library that helps write web crawlers
+def setAllURLs(self):
+    pass
 
-class poemSpider(scrappy.Spider):
-    name = "poem" #identifies the crawler (This must be unique in the project)
+def getURL(self):
+    with open("URL_list.txt", "w") as urls:
+        currentURL= urls.readline()
+    urls.close()
+    return currentURL
+    #returns URL to look in
 
-    def requests(self):
-        #where the crawler will look. At the moment only in one page
-        urls = [
-        'http://www.dainuskapis.lv/katalogs/1.-Par-dziesmam-un-dziedasanu'
-        ]
+def parseHTML(self, URL):
+    pass
+    #goes through URLs looks for html elements
+    #returns JSON objects to test file
 
-        for url in urls:
-            yield scrapy.Request(url=url, callback=self.parse)
-            #what page is being read by crawler
-
-    def parse(self,response):
-        
-
+current = getURL()
+parseHTML(current)
 tester = open("Test.txt", "w")
 
 for i in :
