@@ -12,7 +12,7 @@ class parseText(HTMLParser.HTMLParser):
 #Create instance of HTML parser
 lParser = parseText()
 
-thisurl = "http://www-rohan.sdsu.edu/~gawron/index.html"
+thisurl = "http://www.dainuskapis.lv/katalogs/1.-Par-dziesmam-un-dziedasanu"
 #Feed HTML file into parser
 lParser.feed(urllib.urlopen(thisurl).read())
 lParser.close()
