@@ -11,23 +11,30 @@ def getDaina(url):
     try:
         html = urlopen(url)
     except HTTPError as e:
+        print e
         return None
         #checks if path provided is good
     try:
-        bsObj = BeautifulSoup(html.read())
+        bsObj = BeautifulSoup(html.read(),'html.parser')
+        #.decode('utf-8', 'ignore')
         #turns the html into a bs object (makes it easier to read)
+        #issue with Latvian characters appearing as gibberish
         daina = bsObj.findAll("", {"class" : "daina"})
+        daina = daina.str()
+        #daina = bytes(daina, "utf-8")
+        daina = daina.decode("utf-8")
         #sets title to be the h1 of the html page
     except AttributeError as e:
+        print e
         return None
         #checks if there actually is a h1 tag
     return daina
 
-daina = getDaina("http://www.dainuskapis.lv/katalogs/1.-Par-dziesmam-un-dziedasanu")
+poem = getDaina("http://www.dainuskapis.lv/katalogs/1.-Par-dziesmam-un-dziedasanu")
 #The website being scraped (looked at)
 
-if daina == None:
-    print("daina could not be found")
+if poem == None:
+    print "poem could not be found"
 else:
-    print(daina)
-    #prints title
+    print poem
+    #prints the poem 
