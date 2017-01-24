@@ -16,14 +16,14 @@ def getDaina(url):
         #checks if path provided is good
     try:
         bsObj = BeautifulSoup(html.read(),'html.parser')
-        #.decode('utf-8', 'ignore')
         #turns the html into a bs object (makes it easier to read)
-        #issue with Latvian characters appearing as gibberish
-        daina = bsObj.findAll("", {"class" : "daina"})
-        daina = daina.str()
-        #daina = bytes(daina, "utf-8")
-        daina = daina.decode("utf-8")
-        #sets title to be the h1 of the html page
+        daina = bsObj.findAll("", {"class" : "daina"}).children
+        #finds all daina objects 
+        for n in daina:
+            
+            print "start of n",n
+            #print dir(n)
+        
     except AttributeError as e:
         print e
         return None
@@ -33,8 +33,8 @@ def getDaina(url):
 poem = getDaina("http://www.dainuskapis.lv/katalogs/1.-Par-dziesmam-un-dziedasanu")
 #The website being scraped (looked at)
 
-if poem == None:
+'''if poem == None:
     print "poem could not be found"
 else:
     print poem
-    #prints the poem 
+    #prints the poem '''
