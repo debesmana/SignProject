@@ -20,17 +20,19 @@ def get_daina(url):
         bsObj = BeautifulSoup(html.read(), 'html.parser')
         #turns the html into a bs object (makes it easier to read)
         daina = bsObj.findAll("", {"class" : "daina"})
-        #finds all daina objects
-        #daina = re.sub(r"<[A-Za-z0-9\.\:\"\=\;\-\/ ]+>", "", daina)
+        #finds all the daina objects in a web page
         for n in daina:
             # TODO: add regular expression to remove <>
-            print "start of n", n
+            daina_string = str(n)
+            daina_string = re.sub(r"<[A-Za-z0-9\.\:\"\=\;\-\/ ]+>", "", daina_string)
+            daina_string = re.sub(r"[0-9]+-[0-9]+", "", daina_string)
+            print "start of n", daina_string
             #print dir(n)
+            return daina_string
 
     except AttributeError as e:
         print e
         return None
-    return daina
 
 poem = get_daina("http://www.dainuskapis.lv/katalogs/1.-Par-dziesmam-un-dziedasanu")
 #The website being scraped (looked at)

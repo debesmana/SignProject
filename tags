@@ -7,7 +7,7 @@
 BOT_NAME	Crawler/tutorial/tutorial/settings.py	/^BOT_NAME = 'tutorial'$/;"	kind:variable	line:12
 BOT_NAME	quotesbot-master(example code)/quotesbot/settings.py	/^BOT_NAME = 'quotesbot'$/;"	kind:variable	line:12
 BaseSpider	Crawler/tutorial/tutorial/spiders/dmoz_spider.py	/^from scrapy.spider import BaseSpider$/;"	kind:namespace	line:1
-BeautifulSoup	Crawler/'OReilly/scraptest.py	/^from bs4 import BeautifulSoup$/;"	kind:namespace	line:5
+BeautifulSoup	Crawler/'OReilly/scraptest.py	/^from bs4 import BeautifulSoup$/;"	kind:namespace	line:6
 ConnectionFailure	PyMongoHamlet/Hamlet_input.py	/^from pymongo.errors import ConnectionFailure$/;"	kind:namespace	line:2
 DmozItem	Crawler/tutorial/tutorial/items.py	/^class DmozItem(Item):$/;"	kind:class	line:10
 DmozSpider	Crawler/tutorial/tutorial/spiders/dmoz_spider.py	/^class DmozSpider(BaseSpider):$/;"	kind:class	line:3
@@ -45,8 +45,8 @@ db	PyMongoHamlet/Hamlet_input.py	/^db = client.test_database$/;"	kind:variable	l
 desc	Crawler/tutorial/tutorial/items.py	/^    desc = Field()$/;"	kind:variable	line:13
 dmoz_spider.py	Crawler/tutorial/tutorial/spiders/dmoz_spider.py	1;"	kind:file	line:1
 from_crawler	Crawler/tutorial/tutorial/middlewares.py	/^    def from_crawler(cls, crawler):$/;"	kind:member	line:17
-getDaina	Crawler/'OReilly/scraptest.py	/^def getDaina(url):$/;"	kind:function	line:10
 getURL	Crawler/First_crawler.py	/^def getURL(self):$/;"	kind:function	line:4
+get_daina	Crawler/'OReilly/scraptest.py	/^def get_daina(url):$/;"	kind:function	line:11
 hamletFile	PyMongoHamlet/Hamlet_input.py	/^hamletFile = open("hamlet.txt",'r')$/;"	kind:variable	line:8
 handle_data	Crawler/python_for_ss_example.py	/^    def handle_data(self, data):$/;"	kind:member	line:8
 htmlSource	Crawler/beautiful soup.py	/^htmlSource = website.read()$/;"	kind:variable	line:4
@@ -65,7 +65,7 @@ parseHTML	Crawler/First_crawler.py	/^def parseHTML(self, URL):$/;"	kind:function
 parseText	Crawler/python_for_ss_example.py	/^class parseText(HTMLParser.HTMLParser):$/;"	kind:class	line:6
 pipelines.py	Crawler/tutorial/tutorial/pipelines.py	1;"	kind:file	line:1
 pipelines.py	quotesbot-master(example code)/quotesbot/pipelines.py	1;"	kind:file	line:1
-poem	Crawler/'OReilly/scraptest.py	/^poem = getDaina("http:\/\/www.dainuskapis.lv\/katalogs\/1.-Par-dziesmam-un-dziedasanu")$/;"	kind:variable	line:33
+poem	Crawler/'OReilly/scraptest.py	/^poem = get_daina("http:\/\/www.dainuskapis.lv\/katalogs\/1.-Par-dziesmam-un-dziedasanu")$/;"	kind:variable	line:36
 process_item	Crawler/tutorial/tutorial/pipelines.py	/^    def process_item(self, item, spider):$/;"	kind:member	line:10
 process_item	quotesbot-master(example code)/quotesbot/pipelines.py	/^    def process_item(self, item, spider):$/;"	kind:member	line:10
 process_spider_exception	Crawler/tutorial/tutorial/middlewares.py	/^    def process_spider_exception(response, exception, spider):$/;"	kind:member	line:38
@@ -73,6 +73,7 @@ process_spider_input	Crawler/tutorial/tutorial/middlewares.py	/^    def process_
 process_spider_output	Crawler/tutorial/tutorial/middlewares.py	/^    def process_spider_output(response, result, spider):$/;"	kind:member	line:30
 process_start_requests	Crawler/tutorial/tutorial/middlewares.py	/^    def process_start_requests(start_requests, spider):$/;"	kind:member	line:46
 python_for_ss_example.py	Crawler/python_for_ss_example.py	1;"	kind:file	line:1
+re	Crawler/'OReilly/scraptest.py	/^import re$/;"	kind:namespace	line:5
 re	PyMongoHamlet/Hamlet_input.py	/^import re$/;"	kind:namespace	line:3
 scraptest.py	Crawler/'OReilly/scraptest.py	1;"	kind:file	line:1
 scrapy	quotesbot-master(example code)/quotesbot/items.py	/^import scrapy$/;"	kind:namespace	line:8
