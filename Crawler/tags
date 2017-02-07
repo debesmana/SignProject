@@ -7,6 +7,8 @@
 BOT_NAME	tutorial/tutorial/settings.py	/^BOT_NAME = 'tutorial'$/;"	kind:variable	line:12
 BaseSpider	tutorial/tutorial/spiders/dmoz_spider.py	/^from scrapy.spider import BaseSpider$/;"	kind:namespace	line:1
 BeautifulSoup	'OReilly/scraptest.py	/^from bs4 import BeautifulSoup$/;"	kind:namespace	line:6
+Connection	mongodb.py	/^from pymongo import Connection$/;"	kind:namespace	line:1
+ConnectionFailure	mongodb.py	/^from pymongo.errors import ConnectionFailure$/;"	kind:namespace	line:2
 DmozItem	tutorial/tutorial/items.py	/^class DmozItem(Item):$/;"	kind:class	line:10
 DmozSpider	tutorial/tutorial/spiders/dmoz_spider.py	/^class DmozSpider(BaseSpider):$/;"	kind:class	line:3
 Field	tutorial/tutorial/items.py	/^from scrapy.item import Item, Field$/;"	kind:namespace	line:8
@@ -36,7 +38,9 @@ info	'OReilly/scraptest.py	/^info = get_daina_info("http:\/\/www.dainuskapis.lv\
 items.py	tutorial/tutorial/items.py	1;"	kind:file	line:1
 lParser	python_for_ss_example.py	/^lParser = parseText()$/;"	kind:variable	line:13
 link	tutorial/tutorial/items.py	/^    link = Field()$/;"	kind:variable	line:12
+main	mongodb.py	/^def main():$/;"	kind:function	line:4
 middlewares.py	tutorial/tutorial/middlewares.py	1;"	kind:file	line:1
+mongodb.py	mongodb.py	1;"	kind:file	line:1
 name	tutorial/tutorial/spiders/dmoz_spider.py	/^    name = "dmoz"$/;"	kind:variable	line:4
 parse	tutorial/tutorial/spiders/dmoz_spider.py	/^    def parse(self, response):$/;"	kind:member	line:11
 parseHTML	First_crawler.py	/^def parseHTML(self, URL):$/;"	kind:function	line:11

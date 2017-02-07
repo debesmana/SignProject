@@ -7,7 +7,17 @@ from bs4 import BeautifulSoup
 #importing the libraries that will be used
 #Beautiful soup can be found here : https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup
 
-#function to get html element (in this case h1)
+#gets all the links to scrape
+def get_links(original_url):
+    """Scrapes the website for the next link"""
+    try:
+        html = urlopen(original_url)
+    except HTTPError as e:
+        print e
+        return None
+        #checks if the path provided works
+
+#function to get daina
 def get_daina(url):
     """Scrapes the web and returns daina object"""
     try:
