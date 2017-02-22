@@ -30,11 +30,12 @@ desc	tutorial/tutorial/items.py	/^    desc = Field()$/;"	kind:variable	line:13
 dmoz_spider.py	tutorial/tutorial/spiders/dmoz_spider.py	1;"	kind:file	line:1
 from_crawler	tutorial/tutorial/middlewares.py	/^    def from_crawler(cls, crawler):$/;"	kind:member	line:17
 getURL	First_crawler.py	/^def getURL(self):$/;"	kind:function	line:4
-get_daina	'OReilly/scraptest.py	/^def get_daina(url):$/;"	kind:function	line:11
-get_daina_info	'OReilly/scraptest.py	/^def get_daina_info(url):$/;"	kind:function	line:41
+get_daina	'OReilly/scraptest.py	/^def get_daina(url):$/;"	kind:function	line:22
+get_daina_info	'OReilly/scraptest.py	/^def get_daina_info(url):$/;"	kind:function	line:52
+get_links	'OReilly/scraptest.py	/^def get_links(original_url):$/;"	kind:function	line:12
 handle_data	python_for_ss_example.py	/^    def handle_data(self, data):$/;"	kind:member	line:8
 htmlSource	beautiful soup.py	/^htmlSource = website.read()$/;"	kind:variable	line:4
-info	'OReilly/scraptest.py	/^info = get_daina_info("http:\/\/www.dainuskapis.lv\/katalogs\/1.-Par-dziesmam-un-dziedasanu")$/;"	kind:variable	line:72
+info	'OReilly/scraptest.py	/^info = get_daina_info("http:\/\/www.dainuskapis.lv\/katalogs\/1.-Par-dziesmam-un-dziedasanu")$/;"	kind:variable	line:83
 items.py	tutorial/tutorial/items.py	1;"	kind:file	line:1
 lParser	python_for_ss_example.py	/^lParser = parseText()$/;"	kind:variable	line:13
 link	tutorial/tutorial/items.py	/^    link = Field()$/;"	kind:variable	line:12
@@ -46,7 +47,7 @@ parse	tutorial/tutorial/spiders/dmoz_spider.py	/^    def parse(self, response):$
 parseHTML	First_crawler.py	/^def parseHTML(self, URL):$/;"	kind:function	line:11
 parseText	python_for_ss_example.py	/^class parseText(HTMLParser.HTMLParser):$/;"	kind:class	line:6
 pipelines.py	tutorial/tutorial/pipelines.py	1;"	kind:file	line:1
-poem	'OReilly/scraptest.py	/^poem = get_daina("http:\/\/www.dainuskapis.lv\/katalogs\/1.-Par-dziesmam-un-dziedasanu")$/;"	kind:variable	line:71
+poem	'OReilly/scraptest.py	/^poem = get_daina("http:\/\/www.dainuskapis.lv\/katalogs\/1.-Par-dziesmam-un-dziedasanu")$/;"	kind:variable	line:82
 process_item	tutorial/tutorial/pipelines.py	/^    def process_item(self, item, spider):$/;"	kind:member	line:10
 process_spider_exception	tutorial/tutorial/middlewares.py	/^    def process_spider_exception(response, exception, spider):$/;"	kind:member	line:38
 process_spider_input	tutorial/tutorial/middlewares.py	/^    def process_spider_input(response, spider):$/;"	kind:member	line:23

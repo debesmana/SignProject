@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 #Beautiful soup can be found here : https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup
 
 #gets all the links to scrape
+# TODO: finish function
 def get_links(original_url):
     """Scrapes the website for the next link"""
     try:
