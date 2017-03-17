@@ -8,9 +8,12 @@ from bs4 import BeautifulSoup
 #importing the libraries that will be used
 #Beautiful soup can be found here : https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup
 
-#All the URL for the scraper
+#The lists used in the programm
 url_list = []
 daina_list = []
+
+#keeps track of how many poems have been processed
+counter = 0
 
 #rounds up to nearest 10
 def roundup(x):
@@ -49,6 +52,11 @@ def get_daina(url):
             #print "start of n", daina_string
             #test if values are right
             daina_list.append(daina_string)
+            global counter
+            counter += 1
+            #TODO write to a seperate document to keep track in case of a crash or other internet problems
+            print counter
+
     except AttributeError as e:
         print e
         return None
