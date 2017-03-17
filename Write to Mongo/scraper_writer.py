@@ -4,17 +4,22 @@ from urllib2 import urlopen
 from urllib2 import HTTPError
 import re
 from bs4 import BeautifulSoup
+import math
 #importing the libraries that will be used
 #Beautiful soup can be found here : https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup
+
+#rounds up to nearest 10
+def roundup(x):
+    return int(math.ceil(x / 10.0)) * 10
 
 #gets all the links to scrape
 def get_links():
     """Scrapes the website for the next link"""
     #Gets all the links for the search "sun"
     SearchResultAmount = 905
-    for x in SearchResultAmount/10:
-        url_list [x]= "http://www.dainuskapis.lv/meklet/"+x*10+"/saule"
-        print url_list
+    for x in range((roundup(SearchResultAmount))/10):
+        #url_list [x]= str("http://www.dainuskapis.lv/meklet/",x*10,"/saule")
+        print x*10
 
 #function to get daina
 def get_daina(url):
