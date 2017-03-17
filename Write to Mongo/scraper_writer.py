@@ -3,8 +3,8 @@
 from urllib2 import urlopen
 from urllib2 import HTTPError
 import re
-from bs4 import BeautifulSoup
 import math
+from bs4 import BeautifulSoup
 #importing the libraries that will be used
 #Beautiful soup can be found here : https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup
 
