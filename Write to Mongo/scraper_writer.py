@@ -17,9 +17,10 @@ def get_links():
     """Scrapes the website for the next link"""
     #Gets all the links for the search "sun"
     SearchResultAmount = 905
-    for x in range((roundup(SearchResultAmount))/10):
-        #url_list [x]= str("http://www.dainuskapis.lv/meklet/",x*10,"/saule")
-        print x*10
+    url_list = []
+    for x in range((roundup(SearchResultAmount)) / 10):
+        url_list.append("http://www.dainuskapis.lv/meklet/%s/saule" % (int(x*10)))
+    print url_list
 
 #function to get daina
 def get_daina(url):
