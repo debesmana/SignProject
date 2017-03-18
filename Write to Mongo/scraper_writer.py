@@ -5,6 +5,7 @@ from urllib2 import HTTPError
 import re
 import math
 from bs4 import BeautifulSoup
+from pymongo import MongoClient
 #importing the libraries that will be used
 #Beautiful soup can be found here : https://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-beautiful-soup
 
@@ -14,6 +15,7 @@ daina_list = []
 
 #keeps track of how many poems have been processed
 counter = 0
+counter_file = open("counter_file.txt", 'w')
 
 #rounds up to nearest 10
 def roundup(x):
@@ -55,12 +57,23 @@ def get_daina(url):
             global counter
             counter += 1
             #TODO write to a seperate document to keep track in case of a crash or other internet problems
-            print counter
+            #print counter
+            counter_file.write(str(counter) + "\n")
 
     except AttributeError as e:
         print e
         return None
     
+#writes to mongo
+def write_to_db(daina): 
+    #setting up local mongoDB
+    client = MongoClient()
+    #if a database (or collection) with a certain name isn't found mongo creates a new one when the first document is inserted
+    db = dainas.test
+    collection = db.test_collection
+    post = {"poem": daina}
+    db.test_collection.insert(post)
+
 #functions are called here
 get_links()
 for x in range(len(url_list)):
@@ -68,5 +81,8 @@ for x in range(len(url_list)):
 
 for x in range(len(daina_list)): 
     print "poem %s" %(x), daina_list[x]
+
+
+counter_file.close()
 #prints the poem
 # TODO: write each daina object to mongoDB
