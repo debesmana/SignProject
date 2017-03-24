@@ -1,5 +1,6 @@
 # coding=utf-8
 
+import ast
 from urllib2 import urlopen
 from urllib2 import HTTPError
 import re
@@ -12,6 +13,7 @@ from pymongo import MongoClient
 #The lists used in the programm
 url_list = []
 daina_list = []
+word_list = []
 
 #keeps track of how many poems have been processed
 counter = 0
@@ -44,10 +46,9 @@ def get_daina(url):
         daina = bsObj.findAll("", {"class" : "daina"})
         #finds all the daina objects in a web page
         for n in daina:
-            # TODO: add regular expression to remove <>
             daina_string = str(n)
             #turns into data into string
-            daina_string = re.sub(r"<[A-Za-z0-9\.\:\"\=\;\-\/ ]+>", "", daina_string)
+            daina_string = re.sub(r"<[A-Za-z0-9\.\:\"\'\=\;\-\/ ]+>", "", daina_string)
             #regex to get rid of html elements
             daina_string = re.sub(r"[0-9]+-[0-9]+", "", daina_string)
             #regex to get rid of numbering at begining of poem
@@ -56,7 +57,6 @@ def get_daina(url):
             daina_list.append(daina_string)
             global counter
             counter += 1
-            #TODO write to a seperate document to keep track in case of a crash or other internet problems
             #print counter
             counter_file.write(str(counter) + "\n")
 
@@ -65,6 +65,13 @@ def get_daina(url):
         return None
     
 #writes to mongo
+def get_words(daina):
+    for n in daina
+    words = [x for x in daina.split()]
+    words = re.sub(r"<[\.\:\"\'\=\;\-\/\,\t ]+>", "", word_list)
+    #regex to get rid of html elements
+    word_list.append(words)
+    return word_list
 def write_to_db(daina): 
     #setting up local mongoDB
     client = MongoClient()
@@ -75,12 +82,16 @@ def write_to_db(daina):
     db.test_collection.insert(post)
 
 #functions are called here
+#def get_all_words(daina):
+
 get_links()
 for x in range(len(url_list)):
     get_daina(url_list[x])
 
 for x in range(len(daina_list)): 
     print "poem %s" %(x), daina_list[x]
+    print get_words(daina_list[x])
+
 
 
 counter_file.close()
