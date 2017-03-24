@@ -21,6 +21,7 @@ counter_file = open("counter_file.txt", 'w')
 
 #rounds up to nearest 10
 def roundup(x):
+     """Rounds a number up to the closest 10"""
     return int(math.ceil(x / 10.0)) * 10
 
 #gets all the links to scrape
@@ -65,14 +66,16 @@ def get_daina(url):
         return None
     
 #writes to mongo
-def get_words(daina):
-    for n in daina
-    words = [x for x in daina.split()]
-    words = re.sub(r"<[\.\:\"\'\=\;\-\/\,\t ]+>", "", word_list)
-    #regex to get rid of html elements
+def get_words(daina = []):
+     """Splits poem into words and passes them into an array"""
+    for n in range(len(daina)):
+        words = [x for x in daina[n].split()]
+        #words = re.sub(r"<[\.\:\"\'\=\;\-\/\,\t ]+>", "", word_list)
+        #regex to get rid of html elements
     word_list.append(words)
     return word_list
 def write_to_db(daina): 
+     """Writes poems to db"""
     #setting up local mongoDB
     client = MongoClient()
     #if a database (or collection) with a certain name isn't found mongo creates a new one when the first document is inserted
@@ -90,7 +93,8 @@ for x in range(len(url_list)):
 
 for x in range(len(daina_list)): 
     print "poem %s" %(x), daina_list[x]
-    print get_words(daina_list[x])
+
+print get_words(daina_list[x])
 
 
 
