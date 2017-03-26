@@ -21,7 +21,7 @@ counter_file = open("counter_file.txt", 'w')
 
 #rounds up to nearest 10
 def roundup(x):
-     """Rounds a number up to the closest 10"""
+    """Rounds a number up to the closest 10"""
     return int(math.ceil(x / 10.0)) * 10
 
 #gets all the links to scrape
@@ -48,34 +48,41 @@ def get_daina(url):
         #finds all the daina objects in a web page
         for n in daina:
             daina_string = str(n)
-            #turns into data into string
-            daina_string = re.sub(r"<[A-Za-z0-9\.\:\"\'\=\;\-\/ ]+>", "", daina_string)
+            #turns html data into string
+            daina_string = re.sub(ur"<[A-Za-z0-9\.\:\"\'\=\;\-\/ ]+>", "", daina_string)
             #regex to get rid of html elements
-            daina_string = re.sub(r"[0-9]+-[0-9]+", "", daina_string)
+            daina_string = re.sub(ur"[0-9]+-[0-9]+", "", daina_string)
             #regex to get rid of numbering at begining of poem
             #print "start of n", daina_string
             #test if values are right
             daina_list.append(daina_string)
+            
+            #Writes to a counter file in case of internet crash so the programm can resume where it started 
             global counter
             counter += 1
             #print counter
             counter_file.write(str(counter) + "\n")
+
+            #removes punctuation
+            words = re.sub(ur"[\,\.\?\!\;\:]", "", daina_string)
+            #gets seperate words
+            words = re.split(ur'[ \n\t]+', words, flags=re.UNICODE)
+            word_list.append(words)
 
     except AttributeError as e:
         print e
         return None
     
 #writes to mongo
-def get_words(daina = []):
-     """Splits poem into words and passes them into an array"""
-    for n in range(len(daina)):
-        words = [x for x in daina[n].split()]
-        #words = re.sub(r"<[\.\:\"\'\=\;\-\/\,\t ]+>", "", word_list)
-        #regex to get rid of html elements
-    word_list.append(words)
-    return word_list
+#def get_words(daina = []):
+    """Splits poem into words and passes them into an array"""
+    #word_list = str(daina)
+    #word_list = re.split(ur'[\W\s]+', word_list, flags=re.UNICODE)
+    #words = re.sub(r"<[\.\:\"\'\=\;\-\/\,\t ]+>", "", word_list)
+    #regex to get rid of html elements
+    #return word_list
 def write_to_db(daina): 
-     """Writes poems to db"""
+    """Writes poems to db"""
     #setting up local mongoDB
     client = MongoClient()
     #if a database (or collection) with a certain name isn't found mongo creates a new one when the first document is inserted
@@ -94,7 +101,7 @@ for x in range(len(url_list)):
 for x in range(len(daina_list)): 
     print "poem %s" %(x), daina_list[x]
 
-print get_words(daina_list[x])
+print word_list
 
 
 
