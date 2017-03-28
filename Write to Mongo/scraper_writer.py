@@ -1,4 +1,5 @@
-# coding=utf-8
+# coding=utf-8 
+# utf-8 is a type of language encoding which covers the unicode character set. Latvian uses latin-extended a (if encoded correctly)
 
 import ast
 from urllib2 import urlopen
@@ -48,11 +49,18 @@ def get_daina(url):
         #finds all the daina objects in a web page
         for n in daina:
             daina_string = str(n)
+            try:
+                daina_string.decode('utf-8')
+                #print "string is UTF-8, length %d bytes" % len(daina_string)
+            except UnicodeError:
+                print "string is not UTF-8"
             #turns html data into string
-            daina_string = re.sub(ur"<[A-Za-z0-9\.\:\"\'\=\;\-\/ ]+>", "", daina_string)
+            daina_string = re.sub(ur"<[A-Za-z0-9\.\:\"\'\=\;\-\/ \t]+>", "", daina_string)
             #regex to get rid of html elements
             daina_string = re.sub(ur"[0-9]+-[0-9]+", "", daina_string)
             #regex to get rid of numbering at begining of poem
+            daina_string = re.sub(ur"[ \n\t+]", " ", daina_string)
+            #regex to get rid of trailing white space and tabs
             #print "start of n", daina_string
             #test if values are right
             daina_list.append(daina_string)
@@ -63,24 +71,20 @@ def get_daina(url):
             #print counter
             counter_file.write(str(counter) + "\n")
 
+            words = str(daina_string)
             #removes punctuation
-            words = re.sub(ur"[\,\.\?\!\;\:]", "", daina_string)
+            words = re.sub(ur"[\,\.\?\!\;\:]", "", words)
             #gets seperate words
-            words = re.split(ur'[ \n\t]+', words, flags=re.UNICODE)
+            words = re.split(ur'[ \n\t]+', words)
             word_list.append(words)
 
     except AttributeError as e:
         print e
         return None
     
+def flatten_list(list):
+    pass
 #writes to mongo
-#def get_words(daina = []):
-    """Splits poem into words and passes them into an array"""
-    #word_list = str(daina)
-    #word_list = re.split(ur'[\W\s]+', word_list, flags=re.UNICODE)
-    #words = re.sub(r"<[\.\:\"\'\=\;\-\/\,\t ]+>", "", word_list)
-    #regex to get rid of html elements
-    #return word_list
 def write_to_db(daina): 
     """Writes poems to db"""
     #setting up local mongoDB
@@ -99,9 +103,10 @@ for x in range(len(url_list)):
     get_daina(url_list[x])
 
 for x in range(len(daina_list)): 
-    print "poem %s" %(x), daina_list[x]
+    #print "poem %s" %(x), daina_list[x] 
+    print "poem %s" %(x), repr(daina_list[x])
 
-print word_list
+#print unicode(word_list).encode('utf8')
 
 
 
