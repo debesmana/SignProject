@@ -34,6 +34,14 @@ def get_links():
         url_list.append("http://www.dainuskapis.lv/meklet/%s/saule" % (int(x*10)))
 
 #function to get daina
+
+def write_to_counter():
+    """Writes to a counter file in case of internet crash so the programm can resume where it started"""
+    global counter
+    counter += 1
+    print counter
+    counter_file.write(str(counter) + "\n")
+
 def get_daina(url):
     """Scrapes the web and returns daina object"""
     try:
@@ -60,16 +68,12 @@ def get_daina(url):
             daina_string = re.sub(ur"[0-9]+-[0-9]+", "", daina_string)
             #regex to get rid of numbering at begining of poem
             daina_string = re.sub(ur"[ \n\t+]", " ", daina_string)
-            #regex to get rid of trailing white space and tabs
+            #regex to get rid of trailing white space, tabs and new lines
             #print "start of n", daina_string
             #test if values are right
             daina_list.append(daina_string)
             
-            #Writes to a counter file in case of internet crash so the programm can resume where it started 
-            global counter
-            counter += 1
-            #print counter
-            counter_file.write(str(counter) + "\n")
+            write_to_counter()
 
             words = str(daina_string)
             #removes punctuation
