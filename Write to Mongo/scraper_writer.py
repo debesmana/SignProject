@@ -1,7 +1,7 @@
-# coding=utf-8 
+# -*- coding: utf-8 -*-
 # utf-8 is a type of language encoding which covers the unicode character set. Latvian uses latin-extended a (if encoded correctly)
+# http://www.utf8-chartable.de/unicode-utf8-table.pl
 
-import ast
 from urllib2 import urlopen
 from urllib2 import HTTPError
 import re
@@ -39,7 +39,7 @@ def write_to_counter():
     """Writes to a counter file in case of internet crash so the programm can resume where it started"""
     global counter
     counter += 1
-    print counter
+    #print counter
     counter_file.write(str(counter) + "\n")
 
 def get_daina(url):
@@ -63,23 +63,25 @@ def get_daina(url):
             except UnicodeError:
                 print "string is not UTF-8"
             #turns html data into string
-            daina_string = re.sub(ur"<[A-Za-z0-9\.\:\"\'\=\;\-\/ \t]+>", "", daina_string)
+            daina_string = re.sub(r"<[A-Za-z0-9\.\:\"\'\=\;\-\/ \t]+>", "", daina_string)
             #regex to get rid of html elements
-            daina_string = re.sub(ur"[0-9]+-[0-9]+", "", daina_string)
+            daina_string = re.sub(r"[0-9]+-[0-9]+", "", daina_string)
             #regex to get rid of numbering at begining of poem
-            daina_string = re.sub(ur"[ \n\t+]", " ", daina_string)
+            daina_string = re.sub(r"[ \n\t+]", " ", daina_string)
             #regex to get rid of trailing white space, tabs and new lines
             #print "start of n", daina_string
             #test if values are right
             daina_list.append(daina_string)
-            
+            #Lists how far the code got in case of crash, internet failure etc.
             write_to_counter()
 
             words = str(daina_string)
             #removes punctuation
-            words = re.sub(ur"[\,\.\?\!\;\:]", "", words)
+            words = re.sub(r"[\,\.\?\!\;\:]", "", words)
             #gets seperate words
-            words = re.split(ur'[ \n\t]+', words)
+            #if no parameters are passed it will split on space (or x aamount of spaces)
+            words.split()
+            #print words
             word_list.append(words)
 
     except AttributeError as e:
@@ -106,11 +108,11 @@ get_links()
 for x in range(len(url_list)):
     get_daina(url_list[x])
 
-for x in range(len(daina_list)): 
+#for x in range(len(daina_list)): 
     #print "poem %s" %(x), daina_list[x] 
-    print "poem %s" %(x), repr(daina_list[x])
-
-#print unicode(word_list).encode('utf8')
+    #print "poem %s" %(x), repr(daina_list[x])
+for x in range(len(word_list)):
+    print "word %s" %(x), word_list[x]
 
 
 
