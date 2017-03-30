@@ -6,6 +6,7 @@ from urllib2 import urlopen
 from urllib2 import HTTPError
 import re
 import math
+import itertools
 from bs4 import BeautifulSoup
 from pymongo import MongoClient
 #importing the libraries that will be used
@@ -29,12 +30,11 @@ def roundup(x):
 def get_links():
     """Scrapes the website for the next link"""
     #Gets all the links for the search "sun"
-    SearchResultAmount = 30#905
+    SearchResultAmount = 5#905
     for x in range((roundup(SearchResultAmount)) / 10):
         url_list.append("http://www.dainuskapis.lv/meklet/%s/saule" % (int(x*10)))
 
 #function to get daina
-
 def write_to_counter():
     """Writes to a counter file in case of internet crash so the programm can resume where it started"""
     global counter
@@ -74,25 +74,18 @@ def get_daina(url):
             daina_list.append(daina_string)
             #Lists how far the code got in case of crash, internet failure etc.
             write_to_counter()
-
-            words = str(daina_string)
-            #removes punctuation
-            words = re.sub(r"[\,\.\?\!\;\:]", "", words)
-            #gets seperate words
-            #if no parameters are passed it will split on space (or x aamount of spaces)
-            words.split()
-            #print words
-            word_list.append(words)
-
     except AttributeError as e:
         print e
         return None
     
-def flatten_list(list):
-    pass
+def flatten_list(a_list):
+    """Flattens lists"""
+    merged = list(itertools.chain.from_iterable(a_list))
+    return merged
 #writes to mongo
 def write_to_db(daina): 
     """Writes poems to db"""
+    pass
     #setting up local mongoDB
     client = MongoClient()
     #if a database (or collection) with a certain name isn't found mongo creates a new one when the first document is inserted
@@ -102,20 +95,21 @@ def write_to_db(daina):
     db.test_collection.insert(post)
 
 #functions are called here
-#def get_all_words(daina):
+
 
 get_links()
 for x in range(len(url_list)):
     get_daina(url_list[x])
 
-#for x in range(len(daina_list)): 
-    #print "poem %s" %(x), daina_list[x] 
+for x in range(len(daina_list)): 
+    print "poem %s" %(x), daina_list[x] 
     #print "poem %s" %(x), repr(daina_list[x])
 for x in range(len(word_list)):
     print "word %s" %(x), word_list[x]
 
-
-
 counter_file.close()
 #prints the poem
 # TODO: write each daina object to mongoDB
+# TODO: write each word to mongoDB
+# TODO: write word sorting algorythm
+# TODO: flatten list function

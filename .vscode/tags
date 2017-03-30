@@ -8,7 +8,7 @@ BOT_NAME	../Crawler/tutorial/tutorial/settings.py	/^BOT_NAME = 'tutorial'$/;"	ki
 BOT_NAME	../quotesbot-master(example code)/quotesbot/settings.py	/^BOT_NAME = 'quotesbot'$/;"	kind:variable	line:12
 BaseSpider	../Crawler/tutorial/tutorial/spiders/dmoz_spider.py	/^from scrapy.spider import BaseSpider$/;"	kind:namespace	line:1
 BeautifulSoup	../Crawler/OReilly/scraptest.py	/^from bs4 import BeautifulSoup$/;"	kind:namespace	line:6
-BeautifulSoup	../Write to Mongo/scraper_writer.py	/^from bs4 import BeautifulSoup$/;"	kind:namespace	line:8
+BeautifulSoup	../Write to Mongo/scraper_writer.py	/^from bs4 import BeautifulSoup$/;"	kind:namespace	line:9
 Connection	../Crawler/mongodb.py	/^from pymongo import Connection$/;"	kind:namespace	line:1
 ConnectionFailure	../Crawler/mongodb.py	/^from pymongo.errors import ConnectionFailure$/;"	kind:namespace	line:2
 ConnectionFailure	../PyMongoHamlet/Hamlet_input.py	/^from pymongo.errors import ConnectionFailure$/;"	kind:namespace	line:2
@@ -18,11 +18,11 @@ Field	../Crawler/tutorial/tutorial/items.py	/^from scrapy.item import Item, Fiel
 First_crawler.py	../Crawler/First_crawler.py	1;"	kind:file	line:1
 HTMLParser	../Crawler/python_for_ss_example.py	/^import HTMLParser$/;"	kind:namespace	line:1
 HTTPError	../Crawler/OReilly/scraptest.py	/^from urllib2 import HTTPError$/;"	kind:namespace	line:4
-HTTPError	../Write to Mongo/scraper_writer.py	/^from urllib2 import HTTPError$/;"	kind:namespace	line:5
+HTTPError	../Write to Mongo/scraper_writer.py	/^from urllib2 import HTTPError$/;"	kind:namespace	line:6
 Hamlet_input.py	../PyMongoHamlet/Hamlet_input.py	1;"	kind:file	line:1
 Item	../Crawler/tutorial/tutorial/items.py	/^from scrapy.item import Item, Field$/;"	kind:namespace	line:8
 MongoClient	../PyMongoHamlet/Hamlet_input.py	/^from pymongo import MongoClient$/;"	kind:namespace	line:1
-MongoClient	../Write to Mongo/scraper_writer.py	/^from pymongo import MongoClient$/;"	kind:namespace	line:9
+MongoClient	../Write to Mongo/scraper_writer.py	/^from pymongo import MongoClient$/;"	kind:namespace	line:10
 NEWSPIDER_MODULE	../Crawler/tutorial/tutorial/settings.py	/^NEWSPIDER_MODULE = 'tutorial.spiders'$/;"	kind:variable	line:15
 NEWSPIDER_MODULE	../quotesbot-master(example code)/quotesbot/settings.py	/^NEWSPIDER_MODULE = 'quotesbot.spiders'$/;"	kind:variable	line:15
 QuotesbotItem	../quotesbot-master(example code)/quotesbot/items.py	/^class QuotesbotItem(scrapy.Item):$/;"	kind:class	line:11
@@ -40,27 +40,27 @@ __init__.py	../Crawler/tutorial/tutorial/spiders/__init__.py	1;"	kind:file	line:
 __init__.py	../quotesbot-master(example code)/quotesbot/__init__.py	1;"	kind:file	line:1
 __init__.py	../quotesbot-master(example code)/quotesbot/spiders/__init__.py	1;"	kind:file	line:1
 allowed_domains	../Crawler/tutorial/tutorial/spiders/dmoz_spider.py	/^    allowed_domains = ["dmoz.org"]$/;"	kind:variable	line:5
-ast	../Write to Mongo/scraper_writer.py	/^import ast$/;"	kind:namespace	line:3
+basic_word_splitter.py	../basic_word_splitter.py	1;"	kind:file	line:1
 beautiful soup.py	../Crawler/beautiful soup.py	1;"	kind:file	line:1
 book	../PyMongoHamlet/Hamlet_input.py	/^book = {}$/;"	kind:variable	line:11
 client	../PyMongoHamlet/Hamlet_input.py	/^client = MongoClient()$/;"	kind:variable	line:5
 collection	../PyMongoHamlet/Hamlet_input.py	/^collection = db.text$/;"	kind:variable	line:7
 collection	../PyMongoHamlet/Hamlet_input.py	/^collection = db.words$/;"	kind:variable	line:21
-counter	../Write to Mongo/scraper_writer.py	/^counter = 0$/;"	kind:variable	line:19
-counter_file	../Write to Mongo/scraper_writer.py	/^counter_file = open("counter_file.txt", 'w')$/;"	kind:variable	line:20
+counter	../Write to Mongo/scraper_writer.py	/^counter = 0$/;"	kind:variable	line:20
+counter_file	../Write to Mongo/scraper_writer.py	/^counter_file = open("counter_file.txt", 'w')$/;"	kind:variable	line:21
 current	../Crawler/First_crawler.py	/^current = getURL()$/;"	kind:variable	line:16
-daina_list	../Write to Mongo/scraper_writer.py	/^daina_list = []$/;"	kind:variable	line:15
+daina_list	../Write to Mongo/scraper_writer.py	/^daina_list = []$/;"	kind:variable	line:16
 db	../PyMongoHamlet/Hamlet_input.py	/^db = client.test_database$/;"	kind:variable	line:6
 desc	../Crawler/tutorial/tutorial/items.py	/^    desc = Field()$/;"	kind:variable	line:13
 dmoz_spider.py	../Crawler/tutorial/tutorial/spiders/dmoz_spider.py	1;"	kind:file	line:1
+flatten_list	../Write to Mongo/scraper_writer.py	/^def flatten_list(list):$/;"	kind:function	line:91
 from_crawler	../Crawler/tutorial/tutorial/middlewares.py	/^    def from_crawler(cls, crawler):$/;"	kind:member	line:17
 getURL	../Crawler/First_crawler.py	/^def getURL(self):$/;"	kind:function	line:4
 get_daina	../Crawler/OReilly/scraptest.py	/^def get_daina(url):$/;"	kind:function	line:22
-get_daina	../Write to Mongo/scraper_writer.py	/^def get_daina(url):$/;"	kind:function	line:36
+get_daina	../Write to Mongo/scraper_writer.py	/^def get_daina(url):$/;"	kind:function	line:45
 get_daina_info	../Crawler/OReilly/scraptest.py	/^def get_daina_info(url):$/;"	kind:function	line:52
 get_links	../Crawler/OReilly/scraptest.py	/^def get_links(original_url):$/;"	kind:function	line:12
-get_links	../Write to Mongo/scraper_writer.py	/^def get_links():$/;"	kind:function	line:28
-get_words	../Write to Mongo/scraper_writer.py	/^def get_words(daina = []):$/;"	kind:function	line:69
+get_links	../Write to Mongo/scraper_writer.py	/^def get_links():$/;"	kind:function	line:29
 hamletFile	../PyMongoHamlet/Hamlet_input.py	/^hamletFile = open("hamlet.txt",'r')$/;"	kind:variable	line:8
 handle_data	../Crawler/python_for_ss_example.py	/^    def handle_data(self, data):$/;"	kind:member	line:8
 htmlSource	../Crawler/beautiful soup.py	/^htmlSource = website.read()$/;"	kind:variable	line:4
@@ -70,7 +70,7 @@ items.py	../quotesbot-master(example code)/quotesbot/items.py	1;"	kind:file	line
 lParser	../Crawler/python_for_ss_example.py	/^lParser = parseText()$/;"	kind:variable	line:13
 link	../Crawler/tutorial/tutorial/items.py	/^    link = Field()$/;"	kind:variable	line:12
 main	../Crawler/mongodb.py	/^def main():$/;"	kind:function	line:4
-math	../Write to Mongo/scraper_writer.py	/^import math$/;"	kind:namespace	line:7
+math	../Write to Mongo/scraper_writer.py	/^import math$/;"	kind:namespace	line:8
 middlewares.py	../Crawler/tutorial/tutorial/middlewares.py	1;"	kind:file	line:1
 mongodb.py	../Crawler/mongodb.py	1;"	kind:file	line:1
 name	../Crawler/tutorial/tutorial/spiders/dmoz_spider.py	/^    name = "dmoz"$/;"	kind:variable	line:4
@@ -93,8 +93,9 @@ process_start_requests	../Crawler/tutorial/tutorial/middlewares.py	/^    def pro
 python_for_ss_example.py	../Crawler/python_for_ss_example.py	1;"	kind:file	line:1
 re	../Crawler/OReilly/scraptest.py	/^import re$/;"	kind:namespace	line:5
 re	../PyMongoHamlet/Hamlet_input.py	/^import re$/;"	kind:namespace	line:3
-re	../Write to Mongo/scraper_writer.py	/^import re$/;"	kind:namespace	line:6
-roundup	../Write to Mongo/scraper_writer.py	/^def roundup(x):$/;"	kind:function	line:23
+re	../Write to Mongo/scraper_writer.py	/^import re$/;"	kind:namespace	line:7
+re	../basic_word_splitter.py	/^import re$/;"	kind:namespace	line:2
+roundup	../Write to Mongo/scraper_writer.py	/^def roundup(x):$/;"	kind:function	line:24
 scraper_writer.py	../Write to Mongo/scraper_writer.py	1;"	kind:file	line:1
 scraptest.py	../Crawler/OReilly/scraptest.py	1;"	kind:file	line:1
 scrapy	../quotesbot-master(example code)/quotesbot/items.py	/^import scrapy$/;"	kind:namespace	line:8
@@ -105,31 +106,34 @@ settings.py	../Crawler/tutorial/tutorial/settings.py	1;"	kind:file	line:1
 settings.py	../quotesbot-master(example code)/quotesbot/settings.py	1;"	kind:file	line:1
 signals	../Crawler/tutorial/tutorial/middlewares.py	/^from scrapy import signals$/;"	kind:namespace	line:8
 spider_opened	../Crawler/tutorial/tutorial/middlewares.py	/^    def spider_opened(self, spider):$/;"	kind:member	line:55
+split_string	../basic_word_splitter.py	/^def split_string(string):$/;"	kind:function	line:5
 start_urls	../Crawler/tutorial/tutorial/spiders/dmoz_spider.py	/^    start_urls = [$/;"	kind:variable	line:6
 start_urls	../quotesbot-master(example code)/quotesbot/spiders/toscrape-css.py	/^    start_urls = [$/;"	kind:variable	line:7
 start_urls	../quotesbot-master(example code)/quotesbot/spiders/toscrape-xpath.py	/^    start_urls = [$/;"	kind:variable	line:7
 tester	../Crawler/First_crawler.py	/^tester = open("Test.txt", "w")$/;"	kind:variable	line:18
 text	../PyMongoHamlet/Hamlet_input.py	/^text = hamletFile.read().lower()$/;"	kind:variable	line:22
 text	../PyMongoHamlet/Hamlet_input.py	/^text = re.sub('[^a-z\\ \\']+', " ", text)$/;"	kind:variable	line:25
+text	../basic_word_splitter.py	/^text = u"Māsa mani kaitināja ļķī ēŗtāņw"$/;"	kind:variable	line:4
 text	../word count.py	/^text = raw_input("Input here")$/;"	kind:variable	line:1
 thisurl	../Crawler/python_for_ss_example.py	/^thisurl = "http:\/\/www.dainuskapis.lv\/katalogs\/1.-Par-dziesmam-un-dziedasanu"$/;"	kind:variable	line:15
 title	../Crawler/tutorial/tutorial/items.py	/^    title = Field()$/;"	kind:variable	line:11
 toscrape-css.py	../quotesbot-master(example code)/quotesbot/spiders/toscrape-css.py	1;"	kind:file	line:1
 toscrape-xpath.py	../quotesbot-master(example code)/quotesbot/spiders/toscrape-xpath.py	1;"	kind:file	line:1
 urlText	../Crawler/python_for_ss_example.py	/^urlText = []$/;"	kind:variable	line:3
-url_list	../Write to Mongo/scraper_writer.py	/^url_list = []$/;"	kind:variable	line:14
+url_list	../Write to Mongo/scraper_writer.py	/^url_list = []$/;"	kind:variable	line:15
 urllib	../Crawler/beautiful soup.py	/^import urllib$/;"	kind:namespace	line:1
 urllib	../Crawler/python_for_ss_example.py	/^import urllib$/;"	kind:namespace	line:2
 urlopen	../Crawler/OReilly/scraptest.py	/^from urllib2 import urlopen$/;"	kind:namespace	line:3
-urlopen	../Write to Mongo/scraper_writer.py	/^from urllib2 import urlopen$/;"	kind:namespace	line:4
+urlopen	../Write to Mongo/scraper_writer.py	/^from urllib2 import urlopen$/;"	kind:namespace	line:5
 website	../Crawler/beautiful soup.py	/^website = urllib.urlopen("http:\/\/www.dainuskapis.lv\/katalogs\/1.-Par-dziesmam-un-dziedasanu")$/;"	kind:variable	line:3
 word	../PyMongoHamlet/Hamlet_input.py	/^    word ={}$/;"	kind:variable	line:28
 word count.py	../word count.py	1;"	kind:file	line:1
 word_count	../word count.py	/^        word_count = word_count + 1$/;"	kind:variable	line:9
 word_count	../word count.py	/^word_count = 0$/;"	kind:variable	line:4
-word_list	../Write to Mongo/scraper_writer.py	/^word_list = []$/;"	kind:variable	line:16
+word_list	../Write to Mongo/scraper_writer.py	/^word_list = []$/;"	kind:variable	line:17
 words	../PyMongoHamlet/Hamlet_input.py	/^words = list(text.split())$/;"	kind:variable	line:26
 words	../word count.py	/^words = text.split()$/;"	kind:variable	line:2
 words_list	../word count.py	/^words_list = {}$/;"	kind:variable	line:3
-write_to_db	../Write to Mongo/scraper_writer.py	/^def write_to_db(daina): $/;"	kind:function	line:76
+write_to_counter	../Write to Mongo/scraper_writer.py	/^def write_to_counter():$/;"	kind:function	line:38
+write_to_db	../Write to Mongo/scraper_writer.py	/^def write_to_db(daina): $/;"	kind:function	line:94
 writetodb.py	../Daina db/writetodb.py	1;"	kind:file	line:1
