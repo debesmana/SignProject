@@ -21,6 +21,18 @@ word_list = []
 counter = 0
 counter_file = open("counter_file.txt", 'w')
 
+# Connection to Mongo DB
+try:
+    #setting up link to mongoDB
+    #conn = pymongo.MongoClient('138.68.170.30', 27067)
+    conn = pymongo.MongoClient('localhost', 27017) #Localhost to test if problem with server
+    print "Connected successfully!!!"
+except pymongo.errors.ConnectionFailure, e:
+    print "Could not connect to MongoDB: %s" % e
+ #if a database (or collection) with a certain name isn't found mongo creates a new one when the first document is inserted
+# Define mongoDB database
+db = conn.poems
+
 #rounds up to nearest 10
 def roundup(x):
     """Rounds a number up to the closest 10"""
@@ -92,7 +104,7 @@ def flatten_list(listOfLists):
             merged_list.extend(flatten_list(i))
     #print merged_list
     return merged_list
-#writes to mongo
+
 def get_all_words(text):
     word_list = []
     for x in range(len(text)):
@@ -102,37 +114,35 @@ def get_all_words(text):
         word_list = re.sub(u"(\b[^\s]+\b)", " ",  text[x]).split()
         #make everything lower case
         word_list = [x.lower() for x in word_list]
-        #word_list = [x.strip(string.punctuation) for x in word_list]
+        #word_list = [x.strip(string.punctuation) for x in word_list] #doesn't remove punctuation from within a word
         #print repr(word_list).decode("unicode-escape")
         return word_list
         
-def get_word_frequency():
-    pass
+
 def write_daina_to_db(daina): 
     """Writes poems to db"""
-    # Connection to Mongo DB
-    try:
-        #setting up link to mongoDB
-        #conn = pymongo.MongoClient('138.68.170.30', 27067)
-        conn = pymongo.MongoClient('localhost', 27017) #Localhost to test if problem with server
-        print "Connected successfully!!!"
-    except pymongo.errors.ConnectionFailure, e:
-        print "Could not connect to MongoDB: %s" % e
-    #if a database (or collection) with a certain name isn't found mongo creates a new one when the first document is inserted
-    # Define my mongoDB database
-    db = conn.poems
-    # Define my collection where I'll insert my search
-    posts = db.posts
+    # Define the collection where dainas will be inserted
+    posts = db.poems
     for x in range(len(daina)):
         # Empty dictionary for storing poems
         data = {}
         data['daina'] = daina[x]
         posts.insert(data)
-        #print data
+        print data
     #print posts.count()
-
-
-
+def write_words_to_db(wordList):
+    # Define the collection where words will be inserted
+    posts = db.words
+    data = {}
+    for x in range(len(wordList)):
+        if x != posts.find({"word": wordList[x]}):
+            data['word'] = wordList[x]
+            data['count'] = 1
+            posts.insert(data)
+        else:
+            data['count'] += 1
+            posts.update(data)
+        print data
 #functions are called here
 
 get_links()
@@ -147,8 +157,8 @@ for x in range(len(word_list)):
     print "word %s" %(x), word_list[x]
 
 #write_daina_to_db(merged_daina_list)
-
-get_all_words(merged_daina_list)
+word_List = get_all_words(merged_daina_list)
+write_words_to_db(word_List)
 counter_file.close()#files that are opened need to be closed
 #prints the poem
 # TODO: write each word to mongoDB
