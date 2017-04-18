@@ -6,7 +6,7 @@ from urllib2 import urlopen
 from urllib2 import HTTPError
 import re
 import math
-import itertools
+import string
 from bs4 import BeautifulSoup
 import pymongo
 #importing the libraries that will be used
@@ -93,18 +93,28 @@ def flatten_list(listOfLists):
     #print merged_list
     return merged_list
 #writes to mongo
-def get_words(text):
+def get_all_words(text):
     word_list = []
     for x in range(len(text)):
-        word_list = re.findall(r'(?u)\w+', text)[x].encode('utf-8')
-        print word_list
-def write_to_db(daina): 
+        #regex to remove any punctuation
+        text[x] = re.sub(u"[\,\.\"\:\;\-\?\!\(\)]", "",  text[x])
+        #regex to split into words
+        word_list = re.sub(u"(\b[^\s]+\b)", " ",  text[x]).split()
+        #make everything lower case
+        word_list = [x.lower() for x in word_list]
+        #word_list = [x.strip(string.punctuation) for x in word_list]
+        #print repr(word_list).decode("unicode-escape")
+        return word_list
+        
+def get_word_frequency():
+    pass
+def write_daina_to_db(daina): 
     """Writes poems to db"""
     # Connection to Mongo DB
     try:
         #setting up link to mongoDB
-        conn = pymongo.MongoClient('138.68.170.30', 27067)
-        #conn = pymongo.MongoClient('localhost', 27017) #Localhost to test if problem with server
+        #conn = pymongo.MongoClient('138.68.170.30', 27067)
+        conn = pymongo.MongoClient('localhost', 27017) #Localhost to test if problem with server
         print "Connected successfully!!!"
     except pymongo.errors.ConnectionFailure, e:
         print "Could not connect to MongoDB: %s" % e
@@ -118,8 +128,8 @@ def write_to_db(daina):
         data = {}
         data['daina'] = daina[x]
         posts.insert(data)
-        print data
-    print posts.count()
+        #print data
+    #print posts.count()
 
 
 
@@ -136,12 +146,12 @@ for x in range(len(daina_list)):
 for x in range(len(word_list)):
     print "word %s" %(x), word_list[x]
 
-write_to_db(merged_daina_list)
+#write_daina_to_db(merged_daina_list)
 
-#get_words(merged_daina_list)
+get_all_words(merged_daina_list)
 counter_file.close()#files that are opened need to be closed
 #prints the poem
-# TODO: write each daina object to mongoDB
 # TODO: write each word to mongoDB
 # TODO: write word sorting algorythm
-# TODO: flatten list function
+
+#print u'\u2713'
