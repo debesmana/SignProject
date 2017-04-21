@@ -98,7 +98,7 @@ def flatten_list(listOfLists):
     for i in listOfLists:
         # Only append if i is a basestring (superclass of string)
         if isinstance(i, basestring):
-            merged_list.append(i.decode("utf-8"))
+            merged_list.append(i)
         # Otherwise call this function recursively
         else:
             merged_list.extend(flatten_list(i))
@@ -107,26 +107,29 @@ def flatten_list(listOfLists):
 
 def get_all_words(text):
     word_list = []
+    print len(text)
     for x in range(len(text)):
+        temporary = []
         #regex to remove any punctuation
         text[x] = re.sub(u"[\,\.\"\:\;\-\?\!\(\)]", "",  text[x])
         #regex to split into words
-        word_list = re.sub(u"(\b[^\s]+\b)", " ",  text[x]).split()
+        temporary = re.sub(u"(\b[^\s]+\b)", " ",  text[x]).split()
         #make everything lower case
-        word_list = [x.lower() for x in word_list]
+        temporary = [x.lower() for x in temporary]
         #word_list = [x.strip(string.punctuation) for x in word_list] #doesn't remove punctuation from within a word
-        #print repr(word_list).decode("unicode-escape")
-        return word_list
+        word_list.append(temporary)
+    print repr(word_list).decode("unicode-escape")
+    return word_list
         
 
 def write_daina_to_db(daina): 
     """Writes poems to db"""
     # Define the collection where dainas will be inserted
     posts = db.poems
-    for x in range(len(daina)):
+    for poem in range(len(daina)):
         # Empty dictionary for storing poems
         data = {}
-        data['daina'] = daina[x]
+        data['daina'] = daina[poem]
         posts.insert(data)
         print data
     #print posts.count()
@@ -135,13 +138,8 @@ def write_words_to_db(wordList):
     posts = db.words
     data = {}
     for x in range(len(wordList)):
-        if x != posts.find({"word": wordList[x]}):
-            data['word'] = wordList[x]
-            data['count'] = 1
-            posts.insert(data)
-        else:
-            data['count'] += 1
-            posts.update(data)
+        posts.find_and_modify({"word": wordList[x]}, {"$inc":{"count": 1}}, safe = True, new = True)
+        #
         print data
 #functions are called here
 
@@ -158,10 +156,11 @@ for x in range(len(word_list)):
 
 #write_daina_to_db(merged_daina_list)
 word_List = get_all_words(merged_daina_list)
-write_words_to_db(word_List)
+#merged_word_list = flatten_list(word_List)
+#print repr(word_List).decode("unicode-escape")
+#print repr(merged_word_list).decode("unicode-escape")
+#write_words_to_db(word_List)
 counter_file.close()#files that are opened need to be closed
 #prints the poem
 # TODO: write each word to mongoDB
 # TODO: write word sorting algorythm
-
-#print u'\u2713'
