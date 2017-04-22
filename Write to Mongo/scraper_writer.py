@@ -158,11 +158,17 @@ def write_daina_to_db(daina):
 def write_words_to_db(words):
     # Define the collection where words will be inserted
     posts = db.words
-    data = {}
-    for x in range(len(wordList)):
-        posts.find_and_modify({"word": wordList[x]}, {"$inc":{"count": 1}}, safe = True, new = True)
-        #
+    test = True
+    #cleans collection for testing
+    if test:
+        db.words.drop()
+    for x in range(len(words)):
+        # Empty dictionary for storing poems
+        data = {}
+        data['word'] = words[x]
+        posts.insert(data)
         print data
+    print posts.count()
 
 #FUNCTIONS ARE CALLED HERE:
 get_links()
@@ -180,6 +186,7 @@ merged_words = flatten_list(words)
 #for x in range(len(merged_words)):
     #print merged_words[x]
 write_daina_to_db(merged_daina_list)
+write_words_to_db(merged_words)
 
 
 # TODO: write each word to mongoDB
