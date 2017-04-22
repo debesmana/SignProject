@@ -6,6 +6,7 @@ from urllib2 import urlopen #For the web scraping
 from urllib2 import HTTPError #In case of problems connecting
 import re #Regular Expressions
 import math
+import getpass #mask raw_input for the password prompt
 import string #String operations (.upper & .lower)
 from bs4 import BeautifulSoup #For getting rid of the garbage from the web
 import pymongo #connecting to MongoDB
@@ -114,7 +115,7 @@ def get_daina(url):
             #regex to get rid of trailing white space and tabs
             daina_string = re.sub(ur"[\(\)\.\,\?\!\:\"\'\=\;\-\/]", "", daina_string)
             #regex to get rid of punctuation
-            daina_string = re.sub(ur"  +", " | ", daina_string)
+            daina_string = re.sub(ur"  +", "{", daina_string)
             #regex to get visibly show new space (for some inexplicable reason the html had it as multiple spaces)
             #print "start of n", daina_string
             #test if values are right
@@ -124,35 +125,7 @@ def get_daina(url):
     except AttributeError as e:
         print e
         return None
-#Seperates out all the words into a list
-def get_all_words(text):
-    print len(text)
-    for x in range(len(text)):
-        temporary = []
-        #regex to remove any punctuation
-        text[x] = re.sub(u"[\,\.\"\:\;\-\?\!\(\)]", "",  text[x])
-        #regex to split into words
-        temporary = re.sub(u"(\b[^\s]+\b)", " ",  text[x]).split()
-        #make everything lower case
-        temporary = [x.lower() for x in temporary]
-        #word_list = [x.strip(string.punctuation) for x in word_list] #doesn't remove punctuation from within a word
-        word_list.append(temporary)
-    return word_list
 
-#write the poems to the poem db
-def write_daina_to_db(daina): 
-    """Writes poems to db"""
-    # Define the collection where dainas will be inserted
-    posts = db.poems
-    #for testing v
-    db.poems.drop()
-    for poem in range(len(daina)):
-        # Empty dictionary for storing poems
-        data = {}
-        data['daina'] = daina[poem]
-        posts.insert(data)
-        print data
-    print posts.count()
 #FUNCTIONS ARE CALLED HERE:
 get_links()
 for x in range(len(url_list)):
@@ -160,12 +133,9 @@ for x in range(len(url_list)):
 #print daina_list
 for x in range(len(daina_list)):
     #print "poem %s" %(x), daina_list[x] unflattened list
-    #print "poem %s" %(x), repr(daina_list[x]) checking unicode
+    #print "poem %s" %(x), repr(daina_list[x]) checing unicode
     merged_daina_list = flatten_list(daina_list)
-    #print "poem %s" %(x), merged_daina_list[x]
-    #unicode has to be checked in a for loop since python can't interpret list elements as unicode
-words = get_all_words(merged_daina_list)
-merged_words = flatten_list(words)
-#for x in range(len(merged_words)):
-    #print merged_words[x]
-write_daina_to_db(merged_daina_list)
+    print "poem %s" %(x), merged_daina_list[x]
+    #for letter in merged_daina_list[x]:
+        #print ord(letter)
+#print merged_daina_list
