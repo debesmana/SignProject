@@ -144,15 +144,26 @@ def write_daina_to_db(daina):
     """Writes poems to db"""
     # Define the collection where dainas will be inserted
     posts = db.poems
-    #for testing v
-    db.poems.drop()
+    test = True
+    #cleans collection for testing
+    if test:
+        db.poems.drop()
     for poem in range(len(daina)):
         # Empty dictionary for storing poems
         data = {}
         data['daina'] = daina[poem]
         posts.insert(data)
+        ##print data
+    #print posts.count()
+def write_words_to_db(words):
+    # Define the collection where words will be inserted
+    posts = db.words
+    data = {}
+    for x in range(len(wordList)):
+        posts.find_and_modify({"word": wordList[x]}, {"$inc":{"count": 1}}, safe = True, new = True)
+        #
         print data
-    print posts.count()
+
 #FUNCTIONS ARE CALLED HERE:
 get_links()
 for x in range(len(url_list)):
@@ -169,3 +180,9 @@ merged_words = flatten_list(words)
 #for x in range(len(merged_words)):
     #print merged_words[x]
 write_daina_to_db(merged_daina_list)
+
+
+# TODO: write each word to mongoDB
+# TODO: write word sorting algorithm
+# TODO: tally words
+# TODO: rewrite poems as word IDs
