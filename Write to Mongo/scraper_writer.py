@@ -131,7 +131,7 @@ def get_all_words(text):
         temporary = []
         #regex to remove any punctuation
         text[x] = re.sub(u"[\,\.\"\:\;\-\?\!\(\)]", "",  text[x])
-        #regex to split into words
+        #make everything lower case
         temporary = re.sub(u"(\b[^\s]+\b)", " ",  text[x]).split()
         #make everything lower case
         temporary = [x.lower() for x in temporary]
@@ -153,22 +153,35 @@ def write_daina_to_db(daina):
         data = {}
         data['daina'] = daina[poem]
         posts.insert(data)
-        ##print data
+        #print data
     #print posts.count()
-def write_words_to_db(words):
+def write_words_to_db(words_list):
     # Define the collection where words will be inserted
     posts = db.words
     test = True
     #cleans collection for testing
     if test:
         db.words.drop()
-    for x in range(len(words)):
+    for x in range(len(words_list)):
         # Empty dictionary for storing poems
         data = {}
-        data['word'] = words[x]
+        data['word'] = words_list[x]
+        data['tally'] = 1
         posts.insert(data)
-        print data
-    print posts.count()
+    allPipes = db.words.find({"word": "|"})
+    for pipe in allPipes:
+        print pipe
+        #var map = function() {  
+        
+        #print data
+    ##for x in range(len(words_list)):
+        #used_word = db.words.find_one({"word": words_list[x]})
+        #if used_word:
+           ## db.words.update({"word" : words_list[x]}, {"$inc": {"tally":1}})
+       # else:
+           # db.words.insert({"word" : words_list[x], "tally":1})
+    #print words
+    #print posts.count()
 
 #FUNCTIONS ARE CALLED HERE:
 get_links()
