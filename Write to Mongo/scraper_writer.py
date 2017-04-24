@@ -153,9 +153,10 @@ def write_daina_to_db(daina):
         data = {}
         data['daina'] = daina[poem]
         posts.insert(data)
-        #print data
+        print data
     #print posts.count()
 def write_words_to_db(words_list):
+    """Writes each unique word to word database"""
     # Define the collection where words will be inserted
     posts = db.words
     test = True
@@ -171,13 +172,22 @@ def write_words_to_db(words_list):
     print "posts in words db", posts.count()
 
 
+def dainas_to_word_ID_lists():
+    """Writes poems as word IDs"""
+    # Define the collection where dainas will be inserted
+    posts = db.poems
+    for poem in range(len(daina)):
+        db.poems.update({"word": str(words_list[x])}, 
+        {"$inc": {"tally": 1}}, upsert = True)
+        db.words.find()
+    #print posts.count()
 #FUNCTIONS ARE CALLED HERE:
 get_links()
 for x in range(len(url_list)):
     get_daina(url_list[x])
 #print daina_list
 for x in range(len(daina_list)):
-    #print "poem %s" %(x), daina_list[x] unflattened list
+    #print "poem %s" %(x), daina_list[x]
     #print "poem %s" %(x), repr(daina_list[x]) checking unicode
     merged_daina_list = flatten_list(daina_list)
     #print "poem %s" %(x), merged_daina_list[x]
