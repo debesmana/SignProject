@@ -126,7 +126,7 @@ def get_daina(url):
         return None
 #Seperates out all the words into a list
 def get_all_words(text):
-    print len(text)
+    #print len(text)
     for x in range(len(text)):
         temporary = []
         #regex to remove any punctuation
@@ -162,26 +162,14 @@ def write_words_to_db(words_list):
     #cleans collection for testing
     if test:
         db.words.drop()
+    #print "word list is ", len(words_list)
     for x in range(len(words_list)):
         # Empty dictionary for storing poems
-        data = {}
-        data['word'] = words_list[x]
-        data['tally'] = 1
-        posts.insert(data)
-    allPipes = db.words.find({"word": "|"})
-    for pipe in allPipes:
-        print pipe
-        #var map = function() {  
-        
-        #print data
-    ##for x in range(len(words_list)):
-        #used_word = db.words.find_one({"word": words_list[x]})
-        #if used_word:
-           ## db.words.update({"word" : words_list[x]}, {"$inc": {"tally":1}})
-       # else:
-           # db.words.insert({"word" : words_list[x], "tally":1})
-    #print words
-    #print posts.count()
+        db.words.update({"word": str(words_list[x])}, 
+        {"$inc": {"tally": 1}}, upsert = True)
+        db.words.find()
+    print "posts in words db", posts.count()
+
 
 #FUNCTIONS ARE CALLED HERE:
 get_links()
@@ -196,6 +184,7 @@ for x in range(len(daina_list)):
     #unicode has to be checked in a for loop since python can't interpret list elements as unicode
 words = get_all_words(merged_daina_list)
 merged_words = flatten_list(words)
+#print "words is", len(merged_words)
 #for x in range(len(merged_words)):
     #print merged_words[x]
 write_daina_to_db(merged_daina_list)
