@@ -24,7 +24,7 @@ counter = 0
 counter_file = open("counter_file.txt", 'w')
 
 #local stuff for testing
-USE_LOCAL = True
+USE_LOCAL = False
 #mongodb authentication
 if (not USE_LOCAL):
     user = raw_input("[?] Mongodb username: ")

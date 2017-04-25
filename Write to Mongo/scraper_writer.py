@@ -23,7 +23,7 @@ counter = 0
 counter_file = open("counter_file.txt", 'w')
 
 #local stuff for testing
-USE_LOCAL = True
+USE_LOCAL = False
 #mongodb authentication
 if (not USE_LOCAL):
     user = raw_input("[?] Mongodb username: ")
@@ -153,7 +153,7 @@ def write_daina_to_db(daina):
         data = {}
         data['daina'] = daina[poem]
         posts.insert(data)
-        print data
+        #print data
     #print posts.count()
 def write_words_to_db(words_list):
     """Writes each unique word to word database"""
@@ -169,18 +169,15 @@ def write_words_to_db(words_list):
         db.words.update({"word": str(words_list[x])}, 
         {"$inc": {"tally": 1}}, upsert = True)
         db.words.find()
-    print "posts in words db", posts.count()
+    #print "posts in words db", posts.count()
 
 
-def dainas_to_word_ID_lists():
+def dainas_to_word_ID_lists(words):
     """Writes poems as word IDs"""
-    # Define the collection where dainas will be inserted
+    #Define the collection where dainas will be inserted
     posts = db.poems
-    for poem in range(len(daina)):
-        db.poems.update({"word": str(words_list[x])}, 
-        {"$inc": {"tally": 1}}, upsert = True)
-        db.words.find()
-    #print posts.count()
+    #for 
+
 #FUNCTIONS ARE CALLED HERE:
 get_links()
 for x in range(len(url_list)):
@@ -192,13 +189,16 @@ for x in range(len(daina_list)):
     merged_daina_list = flatten_list(daina_list)
     #print "poem %s" %(x), merged_daina_list[x]
     #unicode has to be checked in a for loop since python can't interpret list elements as unicode
-words = get_all_words(merged_daina_list)
-merged_words = flatten_list(words)
+unmerged_words = get_all_words(merged_daina_list)
+for x in range(len(unmerged_words)):
+    print unmerged_words[x]
+merged_words = flatten_list(unmerged_words)
 #print "words is", len(merged_words)
 #for x in range(len(merged_words)):
     #print merged_words[x]
 write_daina_to_db(merged_daina_list)
 write_words_to_db(merged_words)
+dainas_to_word_ID_lists(unmerged_words)
 
 
 # TODO: write each word to mongoDB
