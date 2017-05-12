@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\HelloMongo.cs" />
      <Compile Include="Assets\Scripts\Connect to mongo.cs" />
      <Compile Include="Assets\Scripts\Draw random poems.cs" />
  <Reference Include="UnityEngine.Networking">
@@ -52,6 +53,12 @@
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="MongoDB.Bson">
+ <HintPath>/Users/Alma/Documents/Processing/SignProject/Unity/Dainu jostas/Assets/Plugins/MongoDB.Bson.dll</HintPath>
+ </Reference>
+ <Reference Include="MongoDB.Driver">
+ <HintPath>/Users/Alma/Documents/Processing/SignProject/Unity/Dainu jostas/Assets/Plugins/MongoDB.Driver.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
